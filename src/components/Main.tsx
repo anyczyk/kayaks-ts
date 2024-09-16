@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import Button from './Button';
+import Button from './parts/Button';
 import useWindowSize from '../hooks/useWindowSize';
 import Homepage from './subpages/homepage';
 import About from './subpages/about';
 import Contact from './subpages/contact';
+import Notepad from "./subpages/notepad";
+import NotepadSave from "./subpages/notepadSave";
 
 const showModal = () => {
     alert('hello');
@@ -16,6 +18,8 @@ const Main: React.FC = () => {
         const path = window.location.pathname;
         if (path === '/about') return 'about';
         if (path === '/contact') return 'contact';
+        if (path === '/notepad') return 'notepad';
+        if (path === '/notepadSave') return 'notepadSave';
         return ''; // Default to Homepage
     });
 
@@ -29,6 +33,11 @@ const Main: React.FC = () => {
     const loadHomepage = () => updatePage('', '/');
     const loadAbout = () => updatePage('about', '/about');
     const loadContact = () => updatePage('contact', '/contact');
+
+    const loadNotepad = () => updatePage('notepad', '/notepad');
+
+    const loadNotepadSave = () => updatePage('notepadSave', '/notepadSave');
+
 
     // Effect to handle back/forward navigation using the popstate event
     useEffect(() => {
@@ -58,6 +67,12 @@ const Main: React.FC = () => {
                     <li>
                         <button onClick={loadContact}>Contact</button>
                     </li>
+                    <li>
+                        <button onClick={loadNotepad}>Notepad</button>
+                    </li>
+                    <li>
+                        <button onClick={loadNotepadSave}>Notepad Save</button>
+                    </li>
                 </ul>
             </nav>
             <main><p>Main Component</p></main>
@@ -74,7 +89,12 @@ const Main: React.FC = () => {
                 {/* Conditionally render About or Contact based on the activePage state */}
                 {activePage === 'about' && <About />}
                 {activePage === 'contact' && <Contact />}
+                {activePage === 'notepad' && <Notepad />}
+                {activePage === 'notepadSave' && <NotepadSave />}
                 {activePage === '' && <Homepage />}
+            </div>
+            <div>
+                {/*<DragAndDrop itemsList={initialItems} />*/}
             </div>
         </>
     );
