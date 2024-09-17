@@ -6,6 +6,7 @@ import About from './subpages/about';
 import Contact from './subpages/contact';
 import Notepad from "./subpages/notepad";
 import NotepadSave from "./subpages/notepadSave";
+import NotepadSaveLanguage from "./subpages/notepadSaveLanguage";
 
 const showModal = () => {
     alert('hello');
@@ -20,6 +21,7 @@ const Main: React.FC = () => {
         if (path === '/contact') return 'contact';
         if (path === '/notepad') return 'notepad';
         if (path === '/notepadSave') return 'notepadSave';
+        if (path === '/notepadsavelanguage') return 'notepadsavelanguage';
         return ''; // Default to Homepage
     });
 
@@ -31,12 +33,16 @@ const Main: React.FC = () => {
 
     // Handlers to set the active page
     const loadHomepage = () => updatePage('', '/');
+
     const loadAbout = () => updatePage('about', '/about');
+
     const loadContact = () => updatePage('contact', '/contact');
 
     const loadNotepad = () => updatePage('notepad', '/notepad');
 
     const loadNotepadSave = () => updatePage('notepadSave', '/notepadSave');
+
+    const loadNotepadSaveLanguage = () => updatePage('notepadsavelanguage', '/notepadsavelanguage');
 
 
     // Effect to handle back/forward navigation using the popstate event
@@ -73,6 +79,9 @@ const Main: React.FC = () => {
                     <li>
                         <button onClick={loadNotepadSave}>Notepad Save</button>
                     </li>
+                    <li>
+                        <button onClick={loadNotepadSaveLanguage}>Notepad Save Language</button>
+                    </li>
                 </ul>
             </nav>
             <main><p>Main Component</p></main>
@@ -91,6 +100,7 @@ const Main: React.FC = () => {
                 {activePage === 'contact' && <Contact />}
                 {activePage === 'notepad' && <Notepad />}
                 {activePage === 'notepadSave' && <NotepadSave />}
+                {activePage === 'notepadsavelanguage' && <NotepadSaveLanguage />}
                 {activePage === '' && <Homepage />}
             </div>
             <div>
